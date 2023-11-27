@@ -1,11 +1,7 @@
-.cardParent {
-  display: flex;
-}
-
 .card {
   border: 1px solid #000;
   text-align: center;
-  width: 500px;
+width: 450px;
   box-shadow: 0 0 15px #a46868;
   height: fit-content;
   /* min-height: 753px; */

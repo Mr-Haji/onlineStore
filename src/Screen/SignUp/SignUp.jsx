@@ -36,7 +36,7 @@ const SignUp = () => {
       const signUp = await
         createUserWithEmailAndPassword(AUTH, AuthData.Email, AuthData.Password)
       console.log(signUp.user, "Chal GYa")
-      Navigate("/dashBoard")
+      Navigate("/products")
 
     } catch (error) {
       setError(error.code.slice(5))
@@ -93,6 +93,8 @@ const SignUp = () => {
             placeholder="Password"
             multiline
           /></Stack>
+
+
 
         <Stack>
           <Button onClick={signUpBtnHandeler} variant="contained">Sign Up</Button>

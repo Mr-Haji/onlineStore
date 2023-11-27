@@ -3,6 +3,7 @@ import LogIn from "../../Screen/LogIn/LogIn";
 import SignUp from "../../Screen/SignUp/SignUp";
 import ProductAdd from "../../Screen/Product Upload/Admin/ProductAdd";
 import AllProducts from "../../Screen/ProductData/AllProducts"
+import GetFromLocalStorage from "../../Screen/Add To Cart/getFromLocalStorage"
 
 export const RouteList = [{
 
@@ -23,6 +24,10 @@ export const RouteList = [{
 {
     path: "/products",
     element: <AllProducts />
+},
+{
+    path: "/cart",
+    element: <GetFromLocalStorage />
 },
 
 ];
