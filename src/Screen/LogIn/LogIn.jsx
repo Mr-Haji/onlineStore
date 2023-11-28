@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Divider, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -45,17 +46,6 @@ const LogIn = () => {
             setError(error.code.slice(5))
             // console.log("===>", error.code)
         }
-
-
-
-
-        //   .then((success) => {
-        //     console.log("Chal gya babuu",  success.user)
-
-        //   }).catch((err => {
-        //     console.log(err)
-        //   }))
-        // 
     }
 
 
@@ -63,20 +53,21 @@ const LogIn = () => {
 
     return (
 
-        <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"} >
+        <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"}
+            sx={{
+                bgcolor: "orange"
+            }} >
             <Stack>
                 {Error && <div>
                     {Error}
                 </div>}
             </Stack>
-            <Stack>
-                <div>
-                    Log In
-                </div>
-            </Stack>
             <Stack gap={2} sx={{
+                bgcolor: "white",
+                minHeight: "350px",
+                minWidth: "250px",
                 border: "1px solid Black",
-                padding: "25px",
+                padding: "30px",
                 borderRadius: "20px",
                 boxShadow: "0 0 10px Grey"
             }} >
@@ -99,7 +90,17 @@ const LogIn = () => {
                 <Stack>
                     <Button onClick={logInHandeler} variant="contained">Log In</Button>
                 </Stack>
+                <Divider sx={{
+                    padding: "10px",
+                }} />
                 <Stack>
+                    <Typography sx={{
+
+                        marginTop: "50px",
+                        fontSize: "15px",
+                        textAlign: "center",
+
+                    }}> Don't Have An Account?</Typography>
                     <Button onClick={signUpNavigate} >Sign Up</Button>
                 </Stack>
 

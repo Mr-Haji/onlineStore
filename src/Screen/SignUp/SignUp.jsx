@@ -1,11 +1,13 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
+
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { AUTH } from '../../Utilities/FireBase/FireBase';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Divider, Typography } from '@mui/material';
 
 
 const SignUp = () => {
@@ -42,17 +44,6 @@ const SignUp = () => {
       setError(error.code.slice(5))
       // console.log("===>", error.code)
     }
-
-
-
-
-    //   .then((success) => {
-    //     console.log("Chal gya babuu",  success.user)
-
-    //   }).catch((err => {
-    //     console.log(err)
-    //   }))
-    // 
   }
 
 
@@ -60,21 +51,21 @@ const SignUp = () => {
 
   return (
 
-    <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"} >
-
-      <Stack>
-        <div>
-          Sign Up
-        </div>
-      </Stack>
+    <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"}
+      sx={{
+        bgcolor: "orange"
+      }} >
       <Stack>
         {Error && <div>
           {Error}
         </div>}
       </Stack>
       <Stack gap={2} sx={{
+        bgcolor: "white",
+        minHeight: "350px",
+        minWidth: "250px",
         border: "1px solid Black",
-        padding: "25px",
+        padding: "30px",
         borderRadius: "20px",
         boxShadow: "0 0 10px Grey"
       }} >
@@ -99,7 +90,15 @@ const SignUp = () => {
         <Stack>
           <Button onClick={signUpBtnHandeler} variant="contained">Sign Up</Button>
         </Stack>
-        <Stack>
+        <Divider sx={{
+          padding: "10px",
+        }} />
+        <Stack        >
+          <Typography sx={{
+            marginTop: "50px",
+            fontSize: "15px",
+
+          }}> Are You Already Have An Account?</Typography>
           <Button onClick={logInNavigate} >Log In</Button>
         </Stack>
 
