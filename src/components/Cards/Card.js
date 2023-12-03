@@ -7,7 +7,7 @@ const Card = ({ image, title, category, description, price, rating, lastButton, 
         <div className="cardParent" key={id}>
             <div className="card" >
                 <div className="cardImage">
-                    <img width="200px" src={image}>
+                    <img width="300px" src={image}>
                     </img>
                 </div>
                 <div className="cardTitle">

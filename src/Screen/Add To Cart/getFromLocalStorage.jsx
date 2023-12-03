@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Card from '../../components/Cards/Card'
 import { useEffect } from 'react'
 import { useNavigate, } from "react-router-dom";
+import { Stack, Button, } from '@mui/material';
 const GetFromLocalStorage = () => {
     const Navigate = useNavigate()
     const [cartData, setcartData] = useState([])
@@ -17,8 +18,14 @@ const GetFromLocalStorage = () => {
     }
     useEffect(() => addToCart(), [])
     console.log(cartData)
-    return (<>
-        <button onClick={() => signOut()}>Sign Out</button>
+    return (<Stack sx={{
+        height: "100vh",
+        bgcolor: "orange",
+        justifyContent: "center",
+        alignItems: "center"
+    }}>
+
+        <Button onClick={() => signOut()}>Sign Out</Button>
         {cartData.map((e, i) => <div key={e.productId}>
             <Card
                 title={e.productTitile}
@@ -27,15 +34,15 @@ const GetFromLocalStorage = () => {
                 image={e.productImage}
                 price={e.productPrice}
                 // rating={e.rating.count}
-                lastButton={"Add To Cart"}
-                clickOnCartBtn={() => addToCart(e)}
+                lastButton={"Confirm Your Order"}
             // onClick = {}
             />
 
         </div>
         )
         }
-    </>
+    </Stack>
+
     )
 }
 

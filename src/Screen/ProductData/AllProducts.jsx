@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../../components/Cards/Card";
 import { useNavigate } from "react-router-dom";
 import SingleProductPage from "../../components/Single Product Page/SingleProductPage";
-import { Skeleton, Stack } from "@mui/material";
+import { Button, Skeleton, Stack } from "@mui/material";
 import { DATABASE, AUTH } from "../../Utilities/FireBase/FireBase"
 import { ref, onChildAdded, push } from "firebase/database";
 import { onAuthStateChanged, signOut, } from "firebase/auth";
@@ -47,11 +47,15 @@ const Products = () => {
         console.log(JSON.parse(getCardData))
     }
     return (
-        loder ? (<>
-            <button onClick={() => signOut(AUTH)}>Sign Out</button>
-            <button onClick={cartScreen}>Add To Cart {Count}</button>
-            <h1>This Is Products Page</h1><Stack
+        loder ? (<Stack sx={{ bgcolor: "orange", }}>
+            <Stack flexDirection={"row"}>
+                <Button onClick={() => signOut(AUTH)} >Sign Out</Button>
+                <Button onClick={cartScreen} >Add To Cart {Count}</Button>
+
+            </Stack>
+            <Stack
                 sx={{
+
                     justifyContent: "space-evenly",
                     gap: 2,
                     flexDirection: "row",
@@ -75,7 +79,7 @@ const Products = () => {
                 )
                 }
             </Stack>
-        </>) : (<Skeleton variant="rectangular" width={500} height={700} />
+        </Stack>) : (<Skeleton variant="rectangular" width={500} height={700} />
         )
 
     );

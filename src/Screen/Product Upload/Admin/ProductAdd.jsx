@@ -89,31 +89,45 @@ const ProductAdd = () => {
     const signOut = () => {
         Navigate("/")
     }
-    return (<Stack gap={1} height={"100vh"} justifyContent={"center"} alignItems={"center"} >
+    return (<Stack sx={{
+        bgcolor: "orange",
+    }} height={"100vh"} justifyContent={"center"} alignItems={"center"} >
+        <Stack sx={{
+            gap: "10px",
+            bgcolor: "white",
+            minHeight: "350px",
+            minWidth: "250px",
+            border: "1px solid Black",
+            padding: "30px",
+            borderRadius: "20px",
+            boxShadow: "0 0 10px Grey"
+        }}>
 
-        <Stack>
-            <Button onClick={signOut} >Sign out</Button>
-        </Stack>
-        <Stack>
-            <TextField onChange={inputDataHandeler} label={"Product Title"} id="productTitle" />
-        </Stack>
-        <Stack>
-            <TextField onChange={inputDataHandeler} label={"Product Category"} id='productCategory' />
-        </Stack>
-        <Stack>
-            <TextField label={"Product Price"} onChange={inputDataHandeler} id='productPrice' />
-        </Stack>
-        <Stack>
-            <TextField onChange={inputDataHandeler} label={"Product Description"} id='productDescription' />
-        </Stack>
-        <Stack>
-            <TextField type='file' onChange={showImg} id='productImage' />
-        </Stack>
-        <Stack>
-            <Button onClick={snedDatahandeler}>Add Me</Button>
-        </Stack>
-        <Stack>
-            <img src={picPreview} onChange={showImg} alt="pic" width={100} />
+
+            <Stack>
+                <Button onClick={signOut} >Sign out</Button>
+            </Stack>
+            <Stack>
+                <TextField onChange={inputDataHandeler} label={"Product Title"} id="productTitle" />
+            </Stack>
+            <Stack>
+                <TextField onChange={inputDataHandeler} label={"Product Category"} id='productCategory' />
+            </Stack>
+            <Stack>
+                <TextField label={"Product Price"} onChange={inputDataHandeler} id='productPrice' />
+            </Stack>
+            <Stack>
+                <TextField onChange={inputDataHandeler} label={"Product Description"} id='productDescription' />
+            </Stack>
+            <Stack>
+                <TextField type='file' onChange={showImg} id='productImage' />
+            </Stack>
+            <Stack>
+                <Button variant="contained" onClick={snedDatahandeler}>Add Me</Button>
+            </Stack>
+            <Stack  alignItems={"center"}>
+                {picPreview ? <img src={picPreview} onChange={showImg} alt="pic" width={100} /> : <div></div>}
+            </Stack>
         </Stack>
     </Stack >
     )
