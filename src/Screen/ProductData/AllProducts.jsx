@@ -10,21 +10,21 @@ import { onAuthStateChanged, signOut, } from "firebase/auth";
 
 
 const Products = () => {
+    useEffect(() => {
+        getData();
+    }, []);
     const Navigate = useNavigate()
     const [Count, setCount] = useState(0)
     const [productData, setProductData] = useState([]);
     const [loder, setloder] = useState(true);
-
     const signOut = () => {
         Navigate("/")
     }
-
-
     const getData = async () => {
         // Recieved Data 
         onAuthStateChanged(AUTH, (user) => {
+            // setProductData([])
             console.log(user.uid);
-            setProductData([])
             const reffer = ref(DATABASE, `Products/`)
             onChildAdded(reffer, recievedData => {
                 console.log(recievedData.val().productImage);
@@ -33,13 +33,9 @@ const Products = () => {
         })
     };
 
-    useEffect(() => {
-        getData();
-    }, []);
     const cartScreen = () => {
         Navigate("/cart")
     }
-
     const addToCart = (e) => {
         localStorage.setItem("cratItems", JSON.stringify(e))
         setCount(prev => prev + 1)
@@ -47,7 +43,7 @@ const Products = () => {
         console.log(JSON.parse(getCardData))
     }
     return (
-        loder ? (<Stack sx={{ bgcolor: "orange", }}>
+        loder ? (<Stack >
             <Stack flexDirection={"row"}>
                 <Button onClick={() => signOut(AUTH)} >Sign Out</Button>
                 <Button onClick={cartScreen} >Add To Cart {Count}</Button>
@@ -61,10 +57,9 @@ const Products = () => {
                     flexDirection: "row",
                     flexWrap: "wrap",
                 }}>
-
                 {productData.map((e, i) => <div key={e.productId}>
                     <Card
-                        title={e.productTitile}
+                        title={e.productTitle}
                         category={e.productCategory}
                         description={e.productDescription}
                         image={e.productImage}

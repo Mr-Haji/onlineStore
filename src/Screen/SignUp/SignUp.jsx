@@ -20,7 +20,7 @@ const SignUp = () => {
   const [AuthData, setAuthData] = useState({})
   const [Error, setError] = useState(false)
 
-  console.log(Error)
+  // console.log(Error)
   const authDataHandeler = (e) => {
     setAuthData(prev => ({
       ...prev, [e.target.id]: e.target.value
@@ -37,7 +37,7 @@ const SignUp = () => {
     try {
       const signUp = await
         createUserWithEmailAndPassword(AUTH, AuthData.Email, AuthData.Password)
-      console.log(signUp.user, "Chal GYa")
+      // console.log(signUp.user, "Chal GYa")
       Navigate("/products")
 
     } catch (error) {
