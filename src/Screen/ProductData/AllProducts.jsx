@@ -10,9 +10,6 @@ import { onAuthStateChanged, signOut, } from "firebase/auth";
 
 
 const Products = () => {
-    useEffect(() => {
-        getData();
-    }, []);
     const Navigate = useNavigate()
     const [Count, setCount] = useState(0)
     const [productData, setProductData] = useState([]);
@@ -22,17 +19,12 @@ const Products = () => {
     }
     const getData = async () => {
         // Recieved Data 
-        onAuthStateChanged(AUTH, (user) => {
-            // setProductData([])
-            console.log(user.uid);
-            const reffer = ref(DATABASE, `Products/`)
-            onChildAdded(reffer, recievedData => {
-                console.log(recievedData.val().productImage);
-                setProductData((prev => [...prev, recievedData.val()]))
-            })
-        })
-    };
+        const reffer = ref(DATABASE, `Products/`)
+        setProductData([])
+        onChildAdded(reffer, recievedData => setProductData((prev => [...prev, recievedData.val()])))
 
+    };
+    //Cart
     const cartScreen = () => {
         Navigate("/cart")
     }
@@ -42,6 +34,9 @@ const Products = () => {
         const getCardData = localStorage.getItem("cratItems")
         console.log(JSON.parse(getCardData))
     }
+    useEffect(() => {
+        getData();
+    }, []);
     return (
         loder ? (<Stack >
             <Stack flexDirection={"row"}>

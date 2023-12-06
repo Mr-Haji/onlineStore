@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Divider, Typography } from '@mui/material';
+import { Divider, Radio, RadioGroup, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -21,7 +21,7 @@ const LogIn = () => {
 
     }
 
-    console.log(Error)
+    // console.log(Error)
     const authDataHandeler = (e) => {
         setAuthData(prev => ({
             ...prev, [e.target.id]: e.target.value
@@ -38,9 +38,9 @@ const LogIn = () => {
         try {
             const signUp = await
                 signInWithEmailAndPassword(AUTH, AuthData.Email, AuthData.Password)
-            console.log(signUp.user, "Chal GYa")
+            // console.log(signUp.user, "Chal GYa")
             // Navigate("/dashBoard")
-            Navigate("/products")
+            Navigate("/productAdd")
 
         } catch (error) {
             setError(error.code.slice(5))
@@ -53,15 +53,10 @@ const LogIn = () => {
 
     return (
 
-        <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"}
-            sx={{
-                bgcolor: "orange"
-            }} >
-            <Stack>
-                {Error && <div>
-                    {Error}
-                </div>}
-            </Stack>
+        <Stack justifyContent={"center"} alignItems={"center"} height={"100vh"} bgcolor="orange">
+
+
+
             <Stack gap={2} sx={{
                 bgcolor: "white",
                 minHeight: "350px",
@@ -71,8 +66,22 @@ const LogIn = () => {
                 borderRadius: "20px",
                 boxShadow: "0 0 10px Grey"
             }} >
+
+                <Stack>
+                    <Typography variant="h4"
+                        sx={{
+                            fontFamily: "serif",
+                            color: "Black",
+                            textAlign: "center",
+                        }}>
+                        Log In
+                    </Typography>
+                </Stack>
+
+
                 <Stack>
                     <TextField onChange={authDataHandeler}
+             required
                         id="Email"
                         label="user@gmail.com"
                         placeholder="user@gmail.com"
@@ -80,15 +89,24 @@ const LogIn = () => {
                     /></Stack>
 
                 <Stack>
-                    <TextField onChange={authDataHandeler}
+                    <TextField onChange={authDataHandeler} 
+                      required
                         id="Password"
                         label="Password"
                         placeholder="Password"
-                        multiline
+                        
+                        type="password"
+                   
                     /></Stack>
 
                 <Stack>
                     <Button onClick={logInHandeler} variant="contained">Log In</Button>
+                </Stack>
+                <Stack>
+                    {Error && <Typography variant="h6" color="Red" textAlign="center">
+                        {Error}
+                    </Typography>}
+
                 </Stack>
                 <Divider sx={{
                     padding: "10px",
@@ -105,7 +123,7 @@ const LogIn = () => {
                 </Stack>
 
             </Stack>
-        </Stack>
+        </Stack >
     )
 }
 export default LogIn;

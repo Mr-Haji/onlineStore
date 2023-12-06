@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { AUTH } from '../../Utilities/FireBase/FireBase';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { Divider, Typography } from '@mui/material';
+import { Divider, Radio, Typography, RadioGroup } from '@mui/material';
 
 
 const SignUp = () => {
@@ -27,7 +27,7 @@ const SignUp = () => {
     }))
   }
 
-  // console.log(AuthData);
+  console.log(AuthData);
 
 
 
@@ -38,7 +38,7 @@ const SignUp = () => {
       const signUp = await
         createUserWithEmailAndPassword(AUTH, AuthData.Email, AuthData.Password)
       // console.log(signUp.user, "Chal GYa")
-      Navigate("/products")
+      Navigate("/productAdd")
 
     } catch (error) {
       setError(error.code.slice(5))
@@ -55,11 +55,7 @@ const SignUp = () => {
       sx={{
         bgcolor: "orange"
       }} >
-      <Stack>
-        {Error && <div>
-          {Error}
-        </div>}
-      </Stack>
+
       <Stack gap={2} sx={{
         bgcolor: "white",
         minHeight: "350px",
@@ -70,7 +66,18 @@ const SignUp = () => {
         boxShadow: "0 0 10px Grey"
       }} >
         <Stack>
+          <Typography variant="h4"
+            sx={{
+              fontFamily: "serif",
+              color: "Black",
+              textAlign: "center",
+            }}>
+            Sign Up
+          </Typography>
+        </Stack>
+        <Stack>
           <TextField onChange={authDataHandeler}
+            required
             id="Email"
             label="user@gmail.com"
             placeholder="user@gmail.com"
@@ -79,16 +86,24 @@ const SignUp = () => {
 
         <Stack>
           <TextField onChange={authDataHandeler}
+            required
+            type='Password'
             id="Password"
             label="Password"
             placeholder="Password"
-            multiline
+
           /></Stack>
 
 
 
         <Stack>
           <Button onClick={signUpBtnHandeler} variant="contained">Sign Up</Button>
+        </Stack>
+        <Stack>
+          {Error && <Typography variant="h6" color="Red" textAlign="center">
+            {Error}
+          </Typography>}
+
         </Stack>
         <Divider sx={{
           padding: "10px",
@@ -101,6 +116,10 @@ const SignUp = () => {
           }}> Are You Already Have An Account?</Typography>
           <Button onClick={logInNavigate} >Log In</Button>
         </Stack>
+
+      </Stack>
+
+      <Stack >
 
       </Stack>
     </Stack>
